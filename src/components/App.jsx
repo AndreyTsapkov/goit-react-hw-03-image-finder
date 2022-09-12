@@ -40,6 +40,7 @@ export class App extends Component {
 
       const isLoadMore =
         this.state.page < Math.round(totalHits / this.state.per_page);
+      console.log(isLoadMore);
 
       if (hits.length === 0) {
         this.setState({ isEmpty: true });
@@ -79,6 +80,7 @@ export class App extends Component {
   };
   render() {
     const {
+      searchQuery,
       page,
       loadMore,
       showModal,
@@ -101,9 +103,9 @@ export class App extends Component {
           </div>
         )}
 
-        {console.log(images)}
-
-        <ImageGallery showModal={this.handleShowModal} images={images} />
+        {searchQuery && (
+          <ImageGallery showModal={this.handleShowModal} images={images} />
+        )}
 
         {loadMore && <LoadMore onClick={this.loadMore} page={page} />}
 
